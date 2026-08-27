@@ -183,18 +183,6 @@ This is a high-level sketch only; the CSV CLI intentionally stays simple until n
 
 ---
 
-## Example
-
-**Input** (`transactions.csv`):
-
-```csv
-type,client,tx,amount
-deposit,1,1,10.0
-withdrawal,1,2,3.0
-dispute,1,1,
-resolve,1,1,
-```
-
 **Run:**
 
 ```bash
