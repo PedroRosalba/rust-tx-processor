@@ -8,15 +8,15 @@ risk: MEDIUM
 path_floor: TRIVIAL
 human_required: false
 human_level: visibility
-status: pr
+status: done
 iteration: 2
 started_at: 2026-10-07T02:03:32Z
-updated_at: 2026-10-07T02:09:23Z
+updated_at: 2026-10-07T02:09:52Z
 driver: ralph-loop
 acceptance: .agent/acceptance/20261007-020332-deterministic-cli-output-sort-account-ro.yaml
 evidence: .agent/evidence/20261007-020332-deterministic-cli-output-sort-account-ro.jsonl
-pr: ""
-next_action: Run the fresh-context correctness review; on ACCEPT commit, push, open PR; on REJECT fix and re-verify
+pr: https://github.com/PedroRosalba/rust-tx-processor/pull/1
+next_action: none — run done
 ---
 
 # Rosalbito run 20261007-020332-deterministic-cli-output-sort-account-ro
@@ -69,3 +69,4 @@ Deterministic CLI output: sort account rows by client id; integration test runni
 - 2026-10-07T02:03:33Z classified MEDIUM/visibility; acceptance contract and plan written; loop armed
 - 2026-10-07T02:06:37Z gate re-derived: test #10, cli #11, determinism #12, readme #13, lint-delta #14, fmt-changed #15 all pass; decision 001 written (pre-existing lint out of scope)
 - 2026-10-07T02:09:17Z review round 1 ACCEPT; .gitattributes added for LF fixtures (#25)
+- 2026-10-07T02:09:52Z run done — PR https://github.com/PedroRosalba/rust-tx-processor/pull/1
