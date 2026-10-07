@@ -1,0 +1,22 @@
+# Acceptance contract for run 20261007-020332-deterministic-cli-output-sort-account-ro
+task: "Deterministic CLI output sorted by client id, integration test against the sample fixture, README note"
+dimensions: [functional, testing, architecture]
+acceptance:
+  - criterion: running the binary on transactions.csv prints exactly accounts.csv (bytes), rows ascending by client id
+    dimension: functional
+    verify: { command: "cargo test --test cli" }
+  - criterion: output order is deterministic across runs (same bytes on repeated invocations)
+    dimension: functional
+    verify: { command: "cargo build --release && a=$(./target/release/rust-tx-processor transactions.csv) && for i in 1 2 3 4 5; do b=$(./target/release/rust-tx-processor transactions.csv); [ \"$a\" = \"$b\" ] || exit 1; done" }
+  - criterion: existing unit and property tests still pass
+    dimension: testing
+    verify: { command: "cargo test" }
+  - criterion: no clippy warnings, formatted
+    dimension: testing
+    verify: { command: "cargo clippy --all-targets -- -D warnings && cargo fmt --check" }
+  - criterion: sorting happens in the CLI output layer only; PaymentEngine and its HashMaps are untouched
+    dimension: architecture
+    verify: { reviewer: correctness }
+  - criterion: README no longer claims row order is undefined and states rows are sorted by client id
+    dimension: functional
+    verify: { command: "! grep -q 'order of rows is undefined' README.md && grep -qi 'sorted by client' README.md" }
