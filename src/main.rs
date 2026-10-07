@@ -82,7 +82,12 @@ fn write_accounts(ledger: &HashMap<u16, Account>) -> Result<(), CliError> {
         .has_headers(true)
         .from_writer(io::stdout());
 
-    for account in ledger.values() {
+    // HashMap iteration order is unspecified; sort by client id so the
+    // output is deterministic across runs.
+    let mut accounts: Vec<&Account> = ledger.values().collect();
+    accounts.sort_by_key(|account| account.client);
+
+    for account in accounts {
         writer.serialize(account)?;
     }
 
