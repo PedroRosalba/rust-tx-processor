@@ -84,7 +84,7 @@ All state changes flow through `compute_tx(&mut self, tx: Transaction) -> Result
 - Streams CSV row-by-row with `csv::ReaderBuilder` (`flexible(true)` for ragged rows).
 - Serde/validation errors → log to stderr, skip row.
 - Engine errors → log to stderr, skip row.
-- Final ledger written to stdout via Serde (order of rows is undefined — hash map iteration).
+- Final ledger written to stdout via Serde (rows are sorted by client id, ascending, so output is deterministic).
 
 **`CliError`** wraps `MissingArgument`, `Io`, and `Csv` with `From` impls and `Display`.
 
